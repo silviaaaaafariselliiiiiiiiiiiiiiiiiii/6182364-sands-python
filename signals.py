@@ -1,6 +1,6 @@
 import numpy as np
 
-def generate_sine_wave(frequency, duration, sample_rate):
+def sine_wave(frequency, duration, sample_rate):
     
     num_samples = int(duration * sample_rate)
     t = np.linspace(0, duration, num_samples, endpoint=False)
@@ -9,7 +9,7 @@ def generate_sine_wave(frequency, duration, sample_rate):
     
     return sine_wave
 
-def generate_sawtooth_wave(frequency, duration, sample_rate):
+def sawtooth_wave(frequency, duration, sample_rate):
     
     num_samples = int(duration * sample_rate)
     t = np.linspace(0, duration, num_samples, endpoint=False)
@@ -19,7 +19,7 @@ def generate_sawtooth_wave(frequency, duration, sample_rate):
     
     return sawtooth_wave
 
-def generate_triangle_wave(frequency, duration, sample_rate):
+def triangular_wave(frequency, duration, sample_rate):
     
     num_samples = int(duration * sample_rate)
     t = np.linspace(0, duration, num_samples, endpoint=False)
@@ -31,3 +31,18 @@ def generate_triangle_wave(frequency, duration, sample_rate):
                             -4 * phase + 3)     # Fall from 1 to -1
     
     return triangle_wave
+
+def square_wave(frequency, duration, sample_rate, duty_cycle=0.5):
+    
+    num_samples = int(duration * sample_rate)
+    t = np.linspace(0, duration, num_samples, endpoint=False)
+    
+    phase = (t * frequency) % 1.0
+    square_wave = np.where(phase < duty_cycle, 1, -1)
+    
+    return square_wave
+
+
+
+
+    
