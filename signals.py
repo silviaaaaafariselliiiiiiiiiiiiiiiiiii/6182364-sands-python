@@ -42,6 +42,14 @@ def square_wave(frequency, duration, sample_rate, duty_cycle=0.5):
     
     return square_wave
 
+def unit_step(duration, sample_rate, step_time=0.5, amplitude=1.0):
+
+    num_samples = int(duration * sample_rate)
+    t = np.linspace(0, duration, num_samples, endpoint=False)
+    
+    unit_step = np.where(t >= step_time, amplitude, 0)
+    
+    return unit_step
 
 
 
