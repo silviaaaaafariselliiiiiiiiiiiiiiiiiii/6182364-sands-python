@@ -24,7 +24,21 @@ def sine_wave(frequency, duration, sample_rate):
     return sine_wave
 
 def sawtooth_wave(frequency, duration, sample_rate):
+    """
+    Generate a sawtooth wave signal with the parameters:
     
+    Parameters:
+    frequency : float
+        Frequency of the sawtooth wave in Hertz (Hz)
+    duration : float
+        Duration of the signal in seconds
+    sample_rate : int
+        Sampling rate in samples per second (Hz)
+    
+    Returns:
+    numpy.ndarray
+        Array containing the sawtooth wave samples ranging from -1 to 1
+    """
     num_samples = int(duration * sample_rate)
     t = np.linspace(0, duration, num_samples, endpoint=False)
     
