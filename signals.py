@@ -105,14 +105,27 @@ def square_wave(frequency, duration, sample_rate, duty_cycle=0.5):
     return square_wave
 
 def unit_step(duration, sample_rate, step_time=0.5, amplitude=1.0):
-
+"""
+    Generate a unit step (Heaviside) signal with the parameters:
+    
+    Parameters:
+    duration : float
+        Duration of the signal in seconds
+    sample_rate : int
+        Sampling rate in samples per second (Hz)
+    step_time : float, optional
+        Time in seconds when the step occurs. Default is 0.5 seconds
+    amplitude : float, optional
+        Amplitude of the step signal after the step time. Default is 1.0
+    
+    Returns:
+    numpy.ndarray
+        Array containing the unit step signal samples. The signal has value 0
+        before step_time and the specified amplitude after step_time.
+    """
     num_samples = int(duration * sample_rate)
     t = np.linspace(0, duration, num_samples, endpoint=False)
     
     unit_step = np.where(t >= step_time, amplitude, 0)
     
     return unit_step
-
-
-
-    
