@@ -77,7 +77,25 @@ def triangular_wave(frequency, duration, sample_rate):
     return triangle_wave
 
 def square_wave(frequency, duration, sample_rate, duty_cycle=0.5):
+     """
+    Generate a square wave signal with the parameters:
     
+    Parameters:
+    frequency : float
+        Frequency of the square wave in Hertz (Hz)
+    duration : float
+        Duration of the signal in seconds
+    sample_rate : int
+        Sampling rate in samples per second (Hz)
+    duty_cycle : float, optional
+        Duty cycle of the square wave (0.0 to 1.0), where 0.5 represents 
+        equal time high and low. Default is 0.5.
+    
+    Returns:
+    numpy.ndarray
+        Array containing the square wave samples with values of 1 (high) 
+        and -1 (low) based on the duty cycle
+    """
     num_samples = int(duration * sample_rate)
     t = np.linspace(0, duration, num_samples, endpoint=False)
     
