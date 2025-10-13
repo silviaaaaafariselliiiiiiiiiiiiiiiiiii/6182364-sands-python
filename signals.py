@@ -48,7 +48,23 @@ def sawtooth_wave(frequency, duration, sample_rate):
     return sawtooth_wave
 
 def triangular_wave(frequency, duration, sample_rate):
+    """
+    Generate a triangular wave signal with the parameters:
     
+    Parameters:
+    frequency : float
+        Frequency of the triangular wave in Hertz (Hz)
+    duration : float
+        Duration of the signal in seconds
+    sample_rate : int
+        Sampling rate in samples per second (Hz)
+    
+    Returns:
+    numpy.ndarray
+        Array containing the triangular wave samples ranging from -1 to 1
+        The wave rises linearly from -1 to 1 during the first half of the period
+        and falls linearly from 1 to -1 during the second half
+    """
     num_samples = int(duration * sample_rate)
     t = np.linspace(0, duration, num_samples, endpoint=False)
     
