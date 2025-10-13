@@ -1,7 +1,21 @@
 import numpy as np
 
 def sine_wave(frequency, duration, sample_rate):
+    """
+    Generate a sine wave signal with the parameters:
     
+    Parameters:
+    frequency : float
+        Frequency of the sine wave in Hertz (Hz)
+    duration : float
+        Duration of the signal in seconds
+    sample_rate : int
+        Sampling rate in samples per second (Hz)
+    
+    Returns:
+    numpy.ndarray
+        Array containing the sine wave samples ranging from -1 to 1
+    """
     num_samples = int(duration * sample_rate)
     t = np.linspace(0, duration, num_samples, endpoint=False)
     
