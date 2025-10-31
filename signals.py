@@ -96,16 +96,14 @@ def square_wave(frequency, duration, sample_rate, duty_cycle=0.5):
         Array containing the square wave samples with values of 1 (high) 
         and -1 (low) based on the duty cycle
     """
-    num_samples = int(duration * sample_rate)
-    t = np.linspace(0, duration, num_samples, endpoint=False)
-    
-    phase = (t * frequency) % 1.0
-    square_wave = np.where(phase < duty_cycle, 1, -1)
-    
-    return square_wave
+     num_samples = int(duration * sample_rate)
+     t = np.linspace(0, duration, num_samples, endpoint=False)
+     phase = (t * frequency) % 1.0
+     square_wave = np.where(phase < duty_cycle, 1, -1)
+     return square_wave
 
 def unit_step(duration, sample_rate, step_time=0.5, amplitude=1.0):
-"""
+    """"
     Generate a unit step (Heaviside) signal with the parameters:
     
     Parameters:
