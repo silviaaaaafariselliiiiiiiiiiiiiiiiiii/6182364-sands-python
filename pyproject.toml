@@ -1,0 +1,11 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "my-package"
+description = "A package of Signals and Systems project"
+authors = [ 
+    {name = "Silvia Fariselli", email = "silviapaolofariselli,brb@gmail.com"},
+]
+dependencies = ["numpy>=1.0", "matplotlib==3.0.2"]
