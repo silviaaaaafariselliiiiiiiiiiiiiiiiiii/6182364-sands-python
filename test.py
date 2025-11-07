@@ -191,4 +191,3 @@ def test_multiply_signals():
     zero_signal = np.zeros(10)
     multiplied = multiply_signals(signal1, zero_signal)
     assert np.allclose(multiplied, 0)
-
