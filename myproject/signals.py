@@ -16,6 +16,8 @@ def sine_wave(frequency, duration, sample_rate):
     Returns:
     numpy.ndarray
         Array containing the sine wave samples ranging from -1 to 1
+    t:numpy.ndarray
+        Time values in seconds
     """
     if duration < 0:
         return np.array([]), np.array([])
@@ -41,6 +43,8 @@ def sawtooth_wave(frequency, duration, sample_rate):
     Returns:
     numpy.ndarray
         Array containing the sawtooth wave samples ranging from -1 to 1
+    t:numpy.ndarray
+        Time values in seconds
     """
     if duration < 0:
         return np.array([]), np.array([])
@@ -67,7 +71,9 @@ def triangular_wave(frequency, duration, sample_rate):
         Array containing the triangular wave samples ranging from -1 to 1
         The wave rises linearly from -1 to 1 during the first half of the period
         and falls linearly from 1 to -1 during the second half
-    """
+    t:numpy.ndarray
+        Time values in seconds
+     """
     if duration < 0:
         return np.array([]), np.array([])
     num_samples = int(duration * sample_rate)
@@ -87,14 +93,12 @@ def square_wave(frequency, duration, sample_rate):
         Duration of the signal in seconds
     sample_rate : int
         Sampling rate in samples per second (Hz)
-    duty_cycle : float, optional
-        Duty cycle of the square wave (0.0 to 1.0), where 0.5 represents 
-        equal time high and low. Default is 0.5.
     
     Returns:
     numpy.ndarray
-        Array containing the square wave samples with values of 1 (high) 
-        and -1 (low) based on the duty cycle
+        Array containing the square wave samples
+    t:numpy.ndarray
+        Time values in seconds 
     """
      if duration < 0:
         return np.array([]), np.array([])
@@ -120,8 +124,9 @@ def unit_step(duration, sample_rate, step_time, amplitude = 1):
     
     Returns:
     numpy.ndarray
-        Array containing the unit step signal samples. The signal has value 0
-        before step_time and the specified amplitude after step_time.
+        Array containing the unit step signal samples
+    t:numpy.ndarray
+        Time values in seconds
     """
     if duration < 0:
         return np.array([]), np.array([])
