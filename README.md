@@ -21,5 +21,8 @@ recuring parameters are signal1, signal2
 
 run.py: contains the calls for the functions found in signals.py  and signaloperations.py. It plots the sine wave and unit step function
 
-test.py: runs the tests to verify whether signals and operations are done properly
+test.py: runs the tests to verify whether signals and operations are done properly. All tests were succesfull.
+
+
+<img width="504" height="212" alt="image" src="https://github.com/user-attachments/assets/979846e9-088a-41e4-8a90-08a4e0cea5cd" />
 
