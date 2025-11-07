@@ -1,4 +1,5 @@
 import numpy as np
+from scipy import signal
 
 def sine_wave(frequency, duration, sample_rate):
     """
@@ -16,12 +17,14 @@ def sine_wave(frequency, duration, sample_rate):
     numpy.ndarray
         Array containing the sine wave samples ranging from -1 to 1
     """
+    if duration < 0:
+        return np.array([]), np.array([])
     num_samples = int(duration * sample_rate)
     t = np.linspace(0, duration, num_samples, endpoint=False)
     
     sine_wave = np.sin(2 * np.pi * frequency * t)
     
-    return sine_wave
+    return t, sine_wave
 
 def sawtooth_wave(frequency, duration, sample_rate):
     """
@@ -39,13 +42,13 @@ def sawtooth_wave(frequency, duration, sample_rate):
     numpy.ndarray
         Array containing the sawtooth wave samples ranging from -1 to 1
     """
+    if duration < 0:
+        return np.array([]), np.array([])
     num_samples = int(duration * sample_rate)
     t = np.linspace(0, duration, num_samples, endpoint=False)
+    sawtooth_wave = signal.sawtooth(2 * np.pi * frequency * t)
     
-    phase = (t * frequency) % 1.0  # Phase from 0 to 1
-    sawtooth_wave = 2 * phase - 1  # Scale from -1 to 1
-    
-    return sawtooth_wave
+    return t, sawtooth_wave
 
 def triangular_wave(frequency, duration, sample_rate):
     """
@@ -65,18 +68,15 @@ def triangular_wave(frequency, duration, sample_rate):
         The wave rises linearly from -1 to 1 during the first half of the period
         and falls linearly from 1 to -1 during the second half
     """
+    if duration < 0:
+        return np.array([]), np.array([])
     num_samples = int(duration * sample_rate)
     t = np.linspace(0, duration, num_samples, endpoint=False)
+    triangular_wave = signal.sawtooth(2 * np.pi * frequency * t, 0.5)
     
-    phase = (t * frequency) % 1.0  # Phase from 0 to 1
-    
-    triangle_wave = np.where(phase < 0.5, 
-                            4 * phase - 1,      # Rise from -1 to 1
-                            -4 * phase + 3)     # Fall from 1 to -1
-    
-    return triangle_wave
+    return t, triangular_wave
 
-def square_wave(frequency, duration, sample_rate, duty_cycle=0.5):
+def square_wave(frequency, duration, sample_rate):
      """
     Generate a square wave signal with the parameters:
     
@@ -96,13 +96,15 @@ def square_wave(frequency, duration, sample_rate, duty_cycle=0.5):
         Array containing the square wave samples with values of 1 (high) 
         and -1 (low) based on the duty cycle
     """
+     if duration < 0:
+        return np.array([]), np.array([])
      num_samples = int(duration * sample_rate)
      t = np.linspace(0, duration, num_samples, endpoint=False)
-     phase = (t * frequency) % 1.0
-     square_wave = np.where(phase < duty_cycle, 1, -1)
-     return square_wave
+     square_wave = np.sign(2 * np.pi * frequency * t)
+     
+     return t, square_wave
 
-def unit_step(duration, sample_rate, step_time=0.5, amplitude=1.0):
+def unit_step(duration, sample_rate, step_time, amplitude = 1):
     """"
     Generate a unit step (Heaviside) signal with the parameters:
     
@@ -121,9 +123,10 @@ def unit_step(duration, sample_rate, step_time=0.5, amplitude=1.0):
         Array containing the unit step signal samples. The signal has value 0
         before step_time and the specified amplitude after step_time.
     """
+    if duration < 0:
+        return np.array([]), np.array([])
     num_samples = int(duration * sample_rate)
     t = np.linspace(0, duration, num_samples, endpoint=False)
-    
     unit_step = np.where(t >= step_time, amplitude, 0)
     
-    return unit_step
+    return t, unit_step
