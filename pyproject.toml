@@ -3,9 +3,15 @@ requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "my-package"
+name = "myproject"
 description = "A package of Signals and Systems project"
+version = "0.1.0"
 authors = [ 
     {name = "Silvia Fariselli", email = "silviapaolofariselli,brb@gmail.com"},
 ]
-dependencies = ["numpy>=1.0", "matplotlib==3.0.2"]
+dependencies = ["numpy", "matplotlib", "scipy"]
+
+[tool.setuptools.packages.find]
+where = ["."] 
+include = ["myproject*"] 
+exclude = ["images*", "tests*", "build*", "dist*"] 
