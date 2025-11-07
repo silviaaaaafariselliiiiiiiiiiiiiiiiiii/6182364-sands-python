@@ -42,7 +42,8 @@ def add_signals(signal1, signal2):
     Returns:
         Sum of the two signals
     """
-    return signal1 + signal2
+    length = min(len(signal1),len(signal2))
+    return signal1[:length] + signal2[:length]
 
 #multiplication among signals
 def multiply_signals(signal1, signal2):
@@ -56,18 +57,5 @@ def multiply_signals(signal1, signal2):
     Returns:
         Product of the two signals
     """
-    return signal1 * signal2
-
-#convolve two signals
-def convolve_signals(signal1, signal2):
-    """
-    Computes the convolution of two signals.
-    
-    Parameters:
-        signal1: First input signal array
-        signal2: Second input signal array
-    
-    Returns:
-        Convolved signal with same length as input signals
-    """
-    return np.convolve(signal1, signal2, mode='same')
+    length = min(len(signal1),len(signal2))
+    return signal1[:length] * signal2[:length]
